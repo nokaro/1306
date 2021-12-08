@@ -3,10 +3,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link href="${pageContext.request.contextPath}/resources/css/styles.css?after" rel="stylesheet" type="text/css">
 <meta charset="UTF-8">
-<title>로그인</title>
 
-</head>
+<title>로그인</title>
 
 <script type="text/javascript">
    function joinMoveFnc(form) {
@@ -19,7 +19,7 @@
  
 <body>
 
-	<h1>사용자 로그인</h1>
+	<h4>로그인</h4>
 	<form action="loginCtr.do" method="post">
 		아이디:	<input type="text" name="id"><br/>
 		암호:		<input type="password" name="password"><br/>

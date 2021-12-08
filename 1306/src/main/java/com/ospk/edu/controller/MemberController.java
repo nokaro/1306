@@ -41,13 +41,17 @@ public class MemberController {
 		logger.info("Welcome MemberController! loginCtr! " + id + ", " + password);
 		 
 		MemberVo memberVo = memberService.memberExist(id, password);
-		
-  
-		if (memberVo != null) {
-			// 회원이 존재한다면 회원 전체 조회 페이지로 이동
+		 
+		if (memberVo != null && memberVo.getId().equals("관리자")) {
+			// 관리자 라면
 			session.setAttribute("member", memberVo);
 
 			return "redirect:/member/list.do";
+			
+		} else if(memberVo != null) {
+			
+			return "/member/Main";
+			
 		} else { 
 			
 			return "/auth/LoginFail";
