@@ -1,3 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ospk.edu">
+
+	<sql id="search">
+		<choose>
+			<when test="searchOption == 'all'">
+				WHERE MNAME LIKE '%'||#{keyword}||'%'
+				OR EMAIL LIKE '%'||#{keyword}||'%'
+			</when>
+			<otherwise>
+				where ${searchOption} LIKE '%'||#{keyword}||'%'
+			</otherwise>
+		</choose>
+	</sql>
+
+
+	<resultMap type="memberVo" id="memberResultMap">
+		<id column="MID" property="id" />
+		<result column="PWD" property="password" />
+		<result column="EMAIL" property="email" />
+		<result column="MNAME" property="name" />
+		<result column="PHONENUM" property="phonenum" />
+	</resultMap>
+
+
+	<select id="memberExist" parameterType="map"
+		resultMap="memberResultMap">
+		SELECT MNAME, EMAIL, PHONENUM
+		FROM MEMBER
+		WHERE MID= #{id}
+		AND
+		PWD = #{password}
+	</select>
+
+
+	<insert id="memberInsertOne" parameterType="memberVo">
+		INSERT INTO MEMBER
+		(MID, PWD, EMAIL, MNAME, PHONENUM)
+		VALUES (#{id}, #{password},
+		#{email}, #{name}, #{phonenum})
+	</insert>
+
+
+	<select id="memberSelectList" parameterType="map"
+		resultMap="memberResultMap">
+		SELECT MEMBER.RNUM, MEMBER.MID, MEMBER.MNAME, MEMBER.EMAIL,	MEMBER.PHONENUM
+		FROM ( SELECT ROWNUM RNUM, M.MID, M.MNAME, M.EMAIL,	M.PHONENUM
+		FROM ( SELECT MID, MNAME, EMAIL, PHONENUM
+		FROM MEMBER
+		<include refid="search"></include>
+		) M
+		) MEMBER
+		WHERE MEMBER.RNUM BETWEEN #{start} AND #{end}
+	</select>
+
+
+	<select id="memberSelectTotalCount" parameterType="map"
+		resultType="java.lang.Integer">
+		SELECT COUNT(*)
+		FROM MEMBER
+		<include refid="search"></include>
+	</select>
+	
+	<delete id="memberDeleteOne" parameterType="String"> 
+		DELETE FROM MEMBER 
+		WHERE MID = #{value} 
+	</delete>
+		 
+		
+	<!-- <update id="memberUpdateOne" parameterType="memberVo"> UPDATE MEMBER 
+		<set> <if test="email != ''">EMAIL = #{email},</if> <if test="name != ''">MNAME 
+		= #{name},</if> <if test="password != ''">PWD = #{password},</if> MOD_DATE 
+		= SYSDATE </set> WHERE MNO = #{no} </update> -->
+
+	<!-- <select id="memberSelectOne" parameterType="int" resultMap="memberResultMap"> 
+		SELECT MNO, PWD, MNAME, EMAIL, CRE_DATE FROM MEMBER WHERE MNO = #{no} </select> -->
+
+	
+
+</mapper>
