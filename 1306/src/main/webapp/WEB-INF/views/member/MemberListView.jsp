@@ -39,6 +39,7 @@ table {
 					<option value="all" selected="selected">전체</option>
 					<option value="name">이름</option>
 					<option value="email">이메일</option>
+					<option value="phonenum">휴대전화</option>
 					 
 				</c:when>
 			
@@ -46,18 +47,27 @@ table {
 					<option value="all">전체</option>
 					<option value="name" selected="selected">이름</option>
 					<option value="email">이메일</option>
+					<option value="phonenum">휴대전화</option>
 				</c:when>
 				
 				<c:when test="${searchMap.searchOption == 'email'}">
 					<option value="all">전체</option>
 					<option value="name">이름</option>
 					<option value="email" selected="selected">이메일</option>
+					<option value="phonenum">휴대전화</option>
+				</c:when>
+				
+				<c:when test="${searchMap.searchOption == 'phonenum'}">
+					<option value="all">전체</option>
+					<option value="name">이름</option>
+					<option value="email">이메일</option>
+					<option value="phonenum" selected="selected">휴대전화</option>
 				</c:when>
 			</c:choose>
 		</select>
 		
 		<input type="text" name="keyword" value="${searchMap.keyword}"
-			placeholder="이름 또는 이메일 검색">
+			placeholder="이름/이메일/휴대전화 검색">
 		
 		<input type="hidden" id='curPage' name='curPage'
 			value="${pagingMap.memberPaging.curPage}">	
@@ -66,7 +76,7 @@ table {
 	<table>
 		<tr>
 			<th>아이디</th><th>이름</th>
-			<th>이메일</th><th>휴대폰번호</th>
+			<th>이메일</th><th>휴대전화</th>
 			<th></th>
 		</tr>
 	<c:forEach var="memberVo" items="${memberList}">
@@ -74,8 +84,9 @@ table {
 			<td>${memberVo.id}</td>
 			
 			<td>
-<%-- 				<a href='./update.do?no=${memberVo.no}'>${memberVo.name}</a> --%>
-				<a href='./selectOne.do?id=${memberVo.id}'>${memberVo.name}</a> 
+				${memberVo.name} 
+<%-- 			<a href='./update.do?no=${memberVo.no}'>${memberVo.name}</a> --%>
+				<!-- <a href='./selectOne.do?id=${memberVo.id}'>${memberVo.name}</a> --> 
 			</td>
 			
 			<td>${memberVo.email}</td>

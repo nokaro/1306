@@ -8,6 +8,7 @@
 			<when test="searchOption == 'all'">
 				WHERE MNAME LIKE '%'||#{keyword}||'%'
 				OR EMAIL LIKE '%'||#{keyword}||'%'
+				OR PHONENUM LIKE '%'||#{keyword}||'%'
 			</when>
 			<otherwise>
 				where ${searchOption} LIKE '%'||#{keyword}||'%'
@@ -77,6 +78,5 @@
 	<!-- <select id="memberSelectOne" parameterType="int" resultMap="memberResultMap"> 
 		SELECT MNO, PWD, MNAME, EMAIL, CRE_DATE FROM MEMBER WHERE MNO = #{no} </select> -->
 
-	
 
 </mapper>
