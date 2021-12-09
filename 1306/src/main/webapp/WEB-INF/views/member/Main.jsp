@@ -7,7 +7,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Resume - Start Bootstrap Theme</title>
+        
+        <title>메인화면</title>
+        
         <link rel="icon" type="image/x-icon" href="resources/assets/img/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
@@ -17,6 +19,7 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="resources/css/styles.css" rel="stylesheet" />
     </head>
+    
     <body id="page-top">
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
@@ -36,7 +39,8 @@
         </nav>
         <!-- Page Content-->
         <div class="container-fluid p-0">
-            <!-- About-->
+        
+            <!-- 모든게시물-->
             <section class="resume-section" id="about">
                 <div class="resume-section-content">
                     <h1 class="mb-0">
@@ -56,6 +60,8 @@
                     </div>
                 </div>
             </section>
+            
+            
             <hr class="m-0" />
             <!-- Experience-->
             <section class="resume-section" id="experience">
