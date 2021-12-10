@@ -27,11 +27,7 @@ table {
 	<jsp:include page="/WEB-INF/views/Header.jsp"/>
 
 	<h1>회원목록</h1>
-	<p>
-		<a href="./add.do">신규회원</a>
-	</p>
-	
-	 
+	  
 	<form id='pagingForm' action="./list.do" method="post">
 		<select name='searchOption' >
 			<c:choose>

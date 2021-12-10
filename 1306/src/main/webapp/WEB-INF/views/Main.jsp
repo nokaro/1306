@@ -14,34 +14,37 @@
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
-        <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet" type="text/css" />
-        <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700"  />
+        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i"  />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="resources/css/styles.css" rel="stylesheet" />
+        <link rel="stylesheet" href="resources/css/styles.css" />
+        
+        
     </head>
     
     <body id="page-top">
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
-            <a class="navbar-brand js-scroll-trigger" href="#page-top">
+            <a class="navbar-brand js-scroll-trigger" >
                 <span class="d-block d-lg-none">Clarence Taylor</span>
                 <span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="resources/assets/img/profile.jpg" alt="..." /></span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">모든 게시물</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#experience">나의 게시물</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#education">좋아요 랭킹</a></li>
-                    
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#all">모든 게시물</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#me">나의 게시물</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#like">좋아요 랭킹</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" 
+                    			href="./member/update.do?id=${member.id}">회원 수정</a></li>
                 </ul>
             </div>
-        </nav>
+        </nav> 
         <!-- Page Content-->
         <div class="container-fluid p-0">
         
             <!-- 모든게시물-->
-            <section class="resume-section" id="about">
+            <section class="resume-section" id="all">
                 <div class="resume-section-content">
                     <h1 class="mb-0">
                         Clarence
@@ -49,9 +52,9 @@
                     </h1>
                     <div class="subheading mb-5">
                         3542 Berry Street · Cheyenne Wells, CO 80810 · (317) 585-8468 ·
-                        <a href="mailto:name@email.com">name@email.com</a>
+                        
                     </div>
-                    <p class="lead mb-5">I am experienced in leveraging agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition.</p>
+                    <p class="lead mb-5">I am med thinking to further the overall value proposition.</p>
                     <div class="social-icons">
                         <a class="social-icon" href="#!"><i class="fab fa-linkedin-in"></i></a>
                         <a class="social-icon" href="#!"><i class="fab fa-github"></i></a>
@@ -59,14 +62,13 @@
                         <a class="social-icon" href="#!"><i class="fab fa-facebook-f"></i></a>
                     </div>
                 </div>
-            </section>
-            
-            
+            </section> 
             <hr class="m-0" />
-            <!-- Experience-->
-            <section class="resume-section" id="experience">
+            
+            <!-- 내 게시물 -->
+            <section class="resume-section" id="me">
                 <div class="resume-section-content">
-                    <h2 class="mb-5">Experience</h2>
+                    <h2 class="mb-5">me</h2>
                     <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
                         <div class="flex-grow-1">
                             <h3 class="mb-0">Senior Web Developer</h3>
@@ -102,10 +104,12 @@
                 </div>
             </section>
             <hr class="m-0" />
-            <!-- Education-->
-            <section class="resume-section" id="education">
+            
+            
+            <!-- 좋아요 랭킹 -->
+            <section class="resume-section" id="like">
                 <div class="resume-section-content">
-                    <h2 class="mb-5">Education</h2>
+                    <h2 class="mb-5">like</h2>
                     <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
                         <div class="flex-grow-1">
                             <h3 class="mb-0">University of Colorado Boulder</h3>
@@ -127,7 +131,7 @@
             </section>
             <hr class="m-0" />
              
-            
+              
         </div>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>

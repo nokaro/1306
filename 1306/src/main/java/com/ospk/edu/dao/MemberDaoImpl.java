@@ -15,9 +15,8 @@ import com.ospk.edu.model.MemberVo;
 
 @Repository
 public class MemberDaoImpl implements MemberDao {
-	
-	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 
+	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 
 	@Autowired
 	SqlSessionTemplate sqlSession;
@@ -26,10 +25,10 @@ public class MemberDaoImpl implements MemberDao {
 
 	@Override
 	public MemberVo memberExist(String id, String password) {
-		//logger.info("Welcome MemberDaoImpl! " + id + ", " + password);
- 
+		// logger.info("Welcome MemberDaoImpl! " + id + ", " + password);
+
 		HashMap<String, Object> paramMap = new HashMap<String, Object>();
-		 
+
 		paramMap.put("id", id);
 		paramMap.put("password", password);
 
@@ -52,15 +51,14 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
-	public List<MemberVo> memberSelectList(String searchOption
-			, String keyword, int start, int end) {  
+	public List<MemberVo> memberSelectList(String searchOption, String keyword, int start, int end) {
 		Map<String, Object> map = new HashMap<>();
-		
+
 		map.put("searchOption", searchOption);
 		map.put("keyword", keyword);
 		map.put("start", start);
 		map.put("end", end);
-		
+
 		return sqlSession.selectList(nameSpace + "memberSelectList", map);
 	}
 
@@ -68,5 +66,44 @@ public class MemberDaoImpl implements MemberDao {
 	public void memberDeleteOne(String id) {
 		sqlSession.delete(nameSpace + "memberDeleteOne", id);
 	}
-	 
+
+	@Override
+	public int memberUpdateOne(MemberVo memberVo) {
+		return sqlSession.update(nameSpace + "memberUpdateOne", memberVo);
+	}
+
+	@Override
+	public MemberVo memberSelectOne(String id) {
+		return sqlSession.selectOne(nameSpace + "memberSelectOne", id);
+	}
+ 
+	@Override
+	public MemberVo memberFindID(String name, String email) {
+		logger.info("Welcome DAOIMPL memberFindID! name: " + name + ", email: " + email);
+
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+ 
+		paramMap.put("name", name);
+		paramMap.put("email", email);
+
+		return sqlSession.selectOne(nameSpace + "memberFindID", paramMap);
+	}
+
+	@Override
+	public MemberVo memberFindPW(String id, String name) {
+		logger.info("Welcome DAOIMPL memberFindPW! id: " + id + ", name: " + name);
+
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+
+		paramMap.put("id", id);
+		paramMap.put("name", name); 
+
+		return sqlSession.selectOne(nameSpace + "memberFindPW", paramMap);
+	}
+
+	@Override
+	public int memberPWUpdateOne(MemberVo memberVo) {
+		return sqlSession.update(nameSpace + "memberPWUpdateOne", memberVo);
+	}
+
 }
