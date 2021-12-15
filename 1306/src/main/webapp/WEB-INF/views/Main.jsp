@@ -32,8 +32,10 @@
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#all">모든 게시물</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#me">나의 게시물</a></li>
+				<li class="nav-item"><a class="nav-link js-scroll-trigger"
+					href="./board/writePost.do">게시물 작성</a></li>
+				<li class="nav-item"><a class="nav-link js-scroll-trigger" href="#all">모든 게시물</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="./board/MyPost.do?id=${member.id}">나의 게시물</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#like">좋아요 랭킹</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" 
                     			href="./member/update.do?id=${member.id}">회원 수정</a></li>
@@ -42,7 +44,22 @@
         </nav> 
         <!-- Page Content-->
         <div class="container-fluid p-0">
-        
+        <!-- 글 작성 -->
+        <section class="resume-section" id="write">
+                <div class="resume-section-content">
+                    <h2 class="mb-0">
+                    	오늘의 일상은 어땠나요?
+                    </h2>
+                    <div class="subheading mb-5">
+						<form action="./writePost.do" method="post">
+							<input id="daily" type="text" placeholder="무슨 일이 일어나고 있나요?">
+							<button type="submit">등록</button>
+							<button type="reset">취소</button>
+						</form>
+					</div>
+                </div>
+            </section> 
+            <hr class="m-0" />
             <!-- 모든게시물-->
             <section class="resume-section" id="all">
                 <div class="resume-section-content">

@@ -6,6 +6,7 @@
 
 	<typeAliases> 
 		<typeAlias type="com.ospk.edu.model.MemberVo" alias="memberVo"/>
+		<typeAlias type="com.ospk.edu.model.BoardVo" alias="boardVo"/>
 	</typeAliases>
 
 </configuration>
