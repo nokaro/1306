@@ -42,5 +42,11 @@ public class BoardServiceImpl implements BoardService {
 		// TODO Auto-generated method stub
 		return boardDao.readPost(pno);
 	}
+	///전체 게시물
+	@Override
+	public List<BoardVo> readAllPost(String keyword2) {
+		// TODO Auto-generated method stub
+		return boardDao.readAllPost(keyword2);
+	} 
 
 }

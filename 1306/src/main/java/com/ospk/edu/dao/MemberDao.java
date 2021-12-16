@@ -2,6 +2,7 @@ package com.ospk.edu.dao;
 
 import java.util.List;
 
+import com.ospk.edu.model.BoardVo;
 import com.ospk.edu.model.MemberVo;
 
 public interface MemberDao {
@@ -19,4 +20,5 @@ public interface MemberDao {
 	public MemberVo memberFindID(String name, String email); //아이디 찾기
 	public MemberVo memberFindPW(String id, String name); //비밀번호 찾기
 	
+
 }

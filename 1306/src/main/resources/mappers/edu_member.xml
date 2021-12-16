@@ -34,6 +34,8 @@
 		AND
 		PWD = #{password}
 	</select>
+	
+	
 
 	<!-- 아이디 찾기 여부 -->
 	<select id="memberFindID" parameterType="map"

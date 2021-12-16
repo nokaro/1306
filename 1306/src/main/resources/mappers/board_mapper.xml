@@ -13,6 +13,12 @@
 		<result column="TAG" property="tag" />
 	</resultMap>
 
+	<!-- 태그 검색 -->
+	<sql id="search2">
+		WHERE TAG LIKE '%'||#{keyword2}||'%'
+	</sql>
+	
+	
 	<!-- 게시글 등록 -->
 	<insert id="writePostCtr" parameterType="BoardVo">
 		INSERT INTO BOARD
@@ -38,16 +44,39 @@
 	<update id="correctPost" parameterType="boardVo">
 		UPDATE BOARD
 		SET CONTENT = #{content},
-			REGDATE = SYSDATE
+			REGDATE = SYSDATE,
+			TAG = #{tag} 
 		WHERE PNO = #{pno}
 	</update>
 	
 	<!-- 게시글  삭제 -->
-	<delete id="deletePost" parameterType="boardVo">
+	<delete id="deletePost" parameterType="boardVo" >
 		DELETE
 		FROM BOARD
 		WHERE PNO = #{pno}
 	</delete>
+	
+	
+	
+<!-- 	<select id="readAllPost" parameterType="boardVo" resultMap="boardResultMap"> -->
+<!-- 	SELECT PNO, MID, CONTENT, REGDATE, TAG -->
+<!-- 	FROM BOARD -->
+<!-- 	</select> -->
+
+	<!-- 모든 게시글 읽기 -->
+	<select id="readAllPost" parameterType="map" resultMap="boardResultMap">
+		SELECT Board.RNUM, Board.PNO, Board.CONTENT, Board.MID, Board.REGDATE, Board.TAG
+		FROM ( SELECT ROWNUM RNUM, B.PNO, B.CONTENT, B.MID, B.REGDATE, B.TAG
+		FROM ( SELECT PNO, CONTENT, MID, REGDATE, TAG
+		FROM Board
+		<include refid="search2"></include>
+		order by REGDATE desc
+		)B
+		) Board
+	
+	</select>
+	
+	
 	
 	<!-- 개별 게시글 읽기 -->
  	<select id="readPost" parameterType="int"

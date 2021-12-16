@@ -4477,10 +4477,10 @@ textarea.form-control-lg {
 }
 
 .navbar-dark .navbar-brand {
-  color: #fff;
+  color: #62228e;
 }
 .navbar-dark .navbar-brand:hover, .navbar-dark .navbar-brand:focus {
-  color: #fff;
+  color: #ac2727;
 }
 .navbar-dark .navbar-nav .nav-link {
   color: rgb(175 153 182 / 55%);

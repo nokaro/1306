@@ -19,4 +19,8 @@ public interface BoardService {
 	
 	//게시글 선택
 	public BoardVo readPost(int pno);
+
+	//모든 게시물
+	public List<BoardVo> readAllPost(String keyword2);
+	 
 }

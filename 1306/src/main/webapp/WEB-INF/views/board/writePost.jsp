@@ -8,7 +8,7 @@
 </head>
 <body>
 	<div id="content">
-		<form action=./writeCtr.do method="post">
+		<form action=./board/writeCtr.do method="post">
 			<input type="hidden" name="id" value="${member.id}" /> <input
 				id="daily" type="text" name="content" placeholder="무슨 일이 일어나고 있나요?"
 				required> <input id="tag" type="text" name="tag"

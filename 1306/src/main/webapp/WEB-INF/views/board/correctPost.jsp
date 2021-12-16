@@ -13,7 +13,7 @@
 	}
 	
 	function pageMoveDeleteFnc(no) {
-		var url = './deleteCtr.do?no=' + no;
+		var url = './deletePost.do?no=' + no;
 		location.href = url;
 	}
 </script>

@@ -1,5 +1,6 @@
 package com.ospk.edu.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ospk.edu.model.BoardVo;
 import com.ospk.edu.model.MemberVo;
@@ -46,6 +48,27 @@ public class BoardController {
 		return "redirect:/loginCtr2.do";
 	}
 	
+	
+	//모든 게시물 보기
+	@RequestMapping(value="/board/AllPost.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String AllPost(@ModelAttribute BoardVo boardVo, 
+			@RequestParam(defaultValue = "") String keyword2, Model model) {
+		
+		logger.info("Welcome MemberController! " + "AllPostaList " + "keyword2: {}", keyword2);
+		
+		HashMap<String, Object> searchMap = new HashMap<String, Object>();
+		searchMap.put("keyword2", keyword2);
+		
+		List<BoardVo> AllPostList = boardService.readAllPost(keyword2);
+		
+		model.addAttribute("AllPostList", AllPostList);
+		model.addAttribute("searchMap", searchMap);
+		   
+		
+		return "/Main";
+	}
+	
+	 
 	//내가 쓴 게시물만 보기
 	@RequestMapping(value="/board/MyPost.do", method=RequestMethod.GET)
 	public String MyPost(HttpSession session, Model model) {
@@ -86,7 +109,8 @@ public class BoardController {
 						boardService.readPost(boardVo.getPno()));
 			}
 		}
-		String url = "redirect:/board/readPost.do?pno=" + boardVo.getPno();
+//		String url = "redirect:/board/readPost.do?pno=" + boardVo.getPno();
+		String url = "redirect:/loginCtr2.do#me";
 		return url;
 	}
 	
@@ -100,7 +124,11 @@ public class BoardController {
 		MemberVo memb = ((MemberVo)session.getAttribute("member"));
 		String id = memb.getId();
 		
-		String url = "redirect:/board/MyPost.do?id=" + id;
+//		./loginCtr2.do#all
+		
+//		String url = "redirect:/board/MyPost.do?id=" + id;
+		String url = "redirect:/loginCtr2.do#me";
+		
 		return url;
 	}
 	

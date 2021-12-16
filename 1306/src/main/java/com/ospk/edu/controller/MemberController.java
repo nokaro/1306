@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.ospk.edu.model.BoardVo;
 import com.ospk.edu.model.MemberVo;
+import com.ospk.edu.service.BoardService;
 import com.ospk.edu.service.MemberService;
 import com.ospk.util.Paging;
 
@@ -26,10 +28,13 @@ public class MemberController {
 
 	@Autowired
 	private MemberService memberService;
+	@Autowired
+	private BoardService boardService;
 
 	// 로그인 버튼 클릭시
 	@RequestMapping(value = "/loginCtr.do", method = RequestMethod.POST)
-	public String loginCtr(String id, String password, HttpSession session, Model model) {
+	public String loginCtr(String id, String password, HttpSession session,
+			@RequestParam(defaultValue = "") String keyword2, Model model) {
 		logger.info("Welcome MemberController! loginCtr! " + id + ", " + password);
 
 		MemberVo memberVo = memberService.memberExist(id, password);
@@ -44,6 +49,23 @@ public class MemberController {
 
 			session.setAttribute("member", memberVo);
 
+			MemberVo memb = ((MemberVo) session.getAttribute("member"));
+			String pid = memb.getId();
+			logger.info("Welcome MemberController2! Mypost: " + pid);
+
+			// 나의게시물
+			List<BoardVo> MyPostList = boardService.selectMyPost(pid);
+
+			// 전체게시물
+			HashMap<String, Object> searchMap = new HashMap<String, Object>();
+			searchMap.put("keyword2", keyword2);
+
+			List<BoardVo> AllPostList = boardService.readAllPost(keyword2);
+
+			model.addAttribute("MyPostList", MyPostList);
+			model.addAttribute("AllPostList", AllPostList);
+			model.addAttribute("searchMap", searchMap);
+
 			return "/Main";
 
 		} else {
@@ -51,6 +73,32 @@ public class MemberController {
 			return "/auth/LoginFail";
 		}
 	}
+
+	// 로그인 버튼 클릭시
+	@RequestMapping(value = "/loginCtr2.do", method = RequestMethod.GET)
+	public String loginCtr2(String id, String password, HttpSession session, 
+			@RequestParam(defaultValue = "") String keyword2, Model model) {
+
+		//나의게시물
+		MemberVo memb = ((MemberVo) session.getAttribute("member"));
+		String writer = memb.getId();
+		List<BoardVo> MyPostList = boardService.selectMyPost(writer);
+		model.addAttribute("MyPostList", MyPostList);
+
+		// 전체게시물
+		HashMap<String, Object> searchMap = new HashMap<String, Object>();
+		searchMap.put("keyword2", keyword2);
+
+		List<BoardVo> AllPostList = boardService.readAllPost(keyword2);
+
+		model.addAttribute("MyPostList", MyPostList); //나의게시물
+		model.addAttribute("AllPostList", AllPostList); //전체게시물
+		model.addAttribute("searchMap", searchMap);
+
+		return "/Main";
+	}
+	
+	
 
 	// 로그아웃
 	@RequestMapping(value = "/logout.do", method = RequestMethod.GET)
@@ -153,13 +201,6 @@ public class MemberController {
 		return "redirect:/loginCtr2.do";
 	}
 
-	// 로그인 버튼 클릭시
-	@RequestMapping(value = "/loginCtr2.do", method = RequestMethod.GET)
-	public String loginCtr2(String id, String password, HttpSession session, Model model) {
-
-		return "/Main";
-	}
-
 	// 회원탈퇴
 	@RequestMapping(value = "/auth/deleteCtr.do", method = RequestMethod.GET)
 	public String memberDeleteCtr(String id, Model model) {
@@ -196,7 +237,7 @@ public class MemberController {
 				return "/auth/LoginFail";
 			}
 
-		} else if (email == null) { //비밀번호를 찾을 경우
+		} else if (email == null) { // 비밀번호를 찾을 경우
 			MemberVo memberVo = memberService.memberFindPW(id, name);
 
 			if (memberVo != null) { // 입력한 정보가 있다면
@@ -205,7 +246,7 @@ public class MemberController {
 				return "member/FindPW";
 			} else {
 
-				return "/auth/LoginFail";
+				return "/auth/LoginFail"; // 실패시에는 로그인페일 jsp 뜨게
 			}
 
 		}
@@ -224,6 +265,6 @@ public class MemberController {
 		}
 		model.addAttribute("member", memberVo);
 
-		return "../../Login";
+		return "../../Login"; // 로그인으로 돌아오기
 	}
 }
