@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ospk.edu">
+   <resultMap type="replyVo" id="replyResultMap">
+      <id column="PNO" property="pno" />
+      <result column="RNO" property="rno" />
+      <result column="CONTENT" property="content" />
+      <result column="WRITER" property="writer" />
+      <result column="WDATE" property="wdate"
+         javaType="java.util.Date" />
+   </resultMap>
+
+
+   <!-- 댓글 조회 -->
+   <select id="selectReply" parameterType="map"
+      resultMap="replyResultMap">
+         SELECT RNO, CONTENT, WRITER, WDATE
+         FROM BOARD_REPLY
+         WHERE PNO = #{pno}
+   </select>
+   
+  	<!-- 댓글 등록 -->
+  	<insert id="insertReply" parameterType="ReplyVo">
+  		INSERT INTO BOARD_REPLY(PNO, RNO, CONTENT, WRITER, WDATE)
+		VALUES(#{pno}, BOARD_REPLY_SEQ.NEXTVAL, #{content}, #{writer}, SYSDATE)
+  	</insert>
+  	
+
+   
+	<!-- 댓글 수정 -->
+    <update id="updateReply" parameterType="replyVo">
+   	  	UPDATE BOARD_REPLY SET CONTENT = #{content}
+		WHERE RNO = #{rno}
+   	</update>
+   	
+	<!-- 댓글 삭제 -->
+   	<delete id="deleteReply" parameterType="replyVo">
+   		DELETE FROM BOARD_REPLY
+		WHERE RNO = #{rno}
+   	</delete>
+   
+</mapper>

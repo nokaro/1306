@@ -42,10 +42,8 @@
 		resultMap="memberResultMap">
 		SELECT MID
 		FROM MEMBER
-		WHERE 
-		MNAME= #{name} 
-		AND 
-		EMAIL = #{email}
+		WHERE MNAME= #{name} 
+		AND EMAIL = #{email}
 	</select>
 	
 	<!-- 비밀번호 찾기 여부 -->

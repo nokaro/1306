@@ -22,7 +22,7 @@
 			<tr>
 				<td>${boardVo.pno}</td>
 				<td>${boardVo.id}</td>
-				<td><a href='./readPost.do?pno=${boardVo.content}'>${boardVo.content}</a></td> 
+				<td><a href='./readPost.do?pno=${boardVo.pno}'>${boardVo.content}</a></td> 
 				<td><fmt:formatDate value="${boardVo.regiDate}"
 						pattern="YYYY-MM-dd hh:mm" />
 				</td>

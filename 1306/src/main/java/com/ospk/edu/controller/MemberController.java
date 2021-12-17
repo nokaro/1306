@@ -21,6 +21,10 @@ import com.ospk.edu.service.BoardService;
 import com.ospk.edu.service.MemberService;
 import com.ospk.util.Paging;
 
+/**
+ * @author KOREAIT
+ *
+ */
 @Controller
 public class MemberController {
 
@@ -37,13 +41,17 @@ public class MemberController {
 			@RequestParam(defaultValue = "") String keyword2, Model model) {
 		logger.info("Welcome MemberController! loginCtr! " + id + ", " + password);
 
+		String viewUrlStr = "";
+		
 		MemberVo memberVo = memberService.memberExist(id, password);
 
 		if (memberVo != null && id.equals("관리자") && password.equals("1234")) {
 			// 관리자 라면
 			session.setAttribute("member", memberVo);
 
-			return "redirect:/auth/list.do";
+			viewUrlStr = "redirect:/auth/list.do";
+			
+//			return "redirect:/auth/list.do";
 
 		} else if (memberVo != null) { // 관리자가 아니라면
 
@@ -66,15 +74,29 @@ public class MemberController {
 			model.addAttribute("AllPostList", AllPostList);
 			model.addAttribute("searchMap", searchMap);
 
-			return "/Main";
-
+			viewUrlStr = "/Main";
+			
+//			return "/Main";
 		} else {
 //			return "redirect:/loginCtr2.do";
-			return "/auth/LoginFail";
+			viewUrlStr = "/auth/LoginFail";
+			
+//			return "/auth/LoginFail";
 		}
+		
+		return viewUrlStr;
+		
 	}
 
 	// 로그인 버튼 클릭시
+	/**
+	 * @param id
+	 * @param password
+	 * @param session
+	 * @param keyword2
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "/loginCtr2.do", method = RequestMethod.GET)
 	public String loginCtr2(String id, String password, HttpSession session, 
 			@RequestParam(defaultValue = "") String keyword2, Model model) {

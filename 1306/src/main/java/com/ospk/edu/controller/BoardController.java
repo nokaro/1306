@@ -18,8 +18,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ospk.edu.model.BoardVo;
 import com.ospk.edu.model.MemberVo;
+import com.ospk.edu.model.ReplyVo;
 import com.ospk.edu.service.BoardService;
 import com.ospk.edu.service.MemberService;
+import com.ospk.edu.service.ReplyService;
 
 @Controller
 public class BoardController {
@@ -27,6 +29,9 @@ public class BoardController {
 	
 	@Autowired
 	private BoardService boardService;
+	
+	@Autowired
+	private ReplyService replyService;
 	
 	// 게시글 등록 화면으로
 	@RequestMapping(value = "/board/writePost.do", method = RequestMethod.GET)
@@ -132,15 +137,18 @@ public class BoardController {
 		return url;
 	}
 	
-	//게시글 읽기
-	@RequestMapping(value = "/board/readPost.do", method=RequestMethod.GET)
-	public String readPost(int pno, Model model) {
+	// 게시글 읽기
+	@RequestMapping(value = "/board/readPost.do", method = RequestMethod.GET)
+	public String readPost(int pno, Model model) throws Exception {
 		logger.info("Welcome MemberController! read Post no: " + pno);
-		
+
 		BoardVo boardVo = boardService.readPost(pno);
 
 		model.addAttribute("boardVo", boardVo);
-		
+
+		List<ReplyVo> replyList = replyService.selectReply(boardVo.getPno());
+		model.addAttribute("replyList", replyList);
+
 		return "board/readPost";
 	}
 }
