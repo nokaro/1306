@@ -9,6 +9,10 @@ import com.ospk.edu.dao.MemberDao;
 import com.ospk.edu.dao.ReplyDao;
 import com.ospk.edu.model.ReplyVo;
 
+/**
+ * @author 박지영
+ *
+ */
 @Service
 public class ReplyServiceImpl implements ReplyService{
 	

@@ -15,9 +15,10 @@
    <!-- 댓글 조회 -->
    <select id="selectReply" parameterType="map"
       resultMap="replyResultMap">
-         SELECT RNO, CONTENT, WRITER, WDATE
+         SELECT PNO, RNO, CONTENT, WRITER, WDATE
          FROM BOARD_REPLY
          WHERE PNO = #{pno}
+         ORDER BY WRITER DESC
    </select>
    
   	<!-- 댓글 등록 -->

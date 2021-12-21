@@ -24,18 +24,19 @@
 		INSERT INTO BOARD
 		(PNO, MID, CONTENT, TAG, REGDATE)
 		VALUES(BOARD_SEQ.NEXTVAL, #{id},  #{content}, #{tag, jdbcType=VARCHAR}, SYSDATE)
+<!-- 		VALUES(BOARD_SEQ.NEXTVAL, #{id},  #{content}, #{tag}, SYSDATE) -->
 	</insert>
 		
 	<!-- 개인 게시글 선택(리스트용) -->
 	<select id="selectMyPost" parameterType="map"
 		resultMap="boardResultMap">
 		SELECT BOARD.RNUM, BOARD.PNO, BOARD.CONTENT, BOARD.MID, BOARD.REGDATE,
-		BOARD.TAG
+			BOARD.TAG
 		FROM ( SELECT ROWNUM RNUM, B.PNO, B.CONTENT, B.MID,
-		B.REGDATE, B.TAG
-		FROM ( SELECT PNO, CONTENT, MID, REGDATE, TAG
-		FROM BOARD
-		ORDER BY PNO DESC) B
+				B.REGDATE, B.TAG
+				FROM ( SELECT PNO, CONTENT, MID, REGDATE, TAG
+						FROM BOARD
+						ORDER BY PNO DESC) B
 		) BOARD
 		WHERE BOARD.MID = #{id}
 	</select>

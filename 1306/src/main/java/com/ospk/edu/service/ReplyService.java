@@ -4,6 +4,10 @@ import java.util.List;
 
 import com.ospk.edu.model.ReplyVo;
 
+/**
+ * @author 박지영
+ *
+ */
 public interface ReplyService {
 	
 	public List<ReplyVo> selectReply(int pno) throws Exception;

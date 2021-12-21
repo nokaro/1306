@@ -182,10 +182,11 @@ p{
 						<tr>
 							<td>${boardVo.pno}</td>
 							<td>${boardVo.id}</td>
-							<td>${boardVo.content}</td>
+							<td><a href='/1306/board/readPost.do?pno=${boardVo.pno}'>${boardVo.content}</a></td>
 							<td>${boardVo.tag}</td>
 							<td><fmt:formatDate value="${boardVo.regiDate}"
 									pattern="YYYY-MM-dd hh:mm" />
+	
 
 						</tr>
 					</c:forEach>

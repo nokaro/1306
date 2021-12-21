@@ -7,40 +7,65 @@
 <head>
 <meta charset="UTF-8">
 <title>글 읽기</title>
+<script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
-	
+   
 	function pageMoveListFnc() {
-		location.href = './list.do';
-	}
+		location.href = './loginCtr2.do#all';
+    }
 
-	function pageMoveDeleteFnc(no) {
-		var url = './deletePost.do?pno=' + no;
-		location.href = url;
-	}
-	
-	function pageMoveCorrectFnc(no) {
-		var url = './correctPost.do?pno=' + no;
-		location.href = url;
-	}
-	
-	//댓글 삭제창
-	function replyDeleteMsgFnc(pno, rno) {
-		var msg = confirm("댓글을 삭제합니다.");
-		if(msg == true){
-			replyDeleteFnc(pno, rno);
-		}
-		else{
-			return false;
-		}
-	}
-	
-	//댓글 삭제 
-	function replyDeleteFnc(pno, rno){
-		var url = './replyDelete.do?rno=' + rno + '&pno=' + pno;
-		location.href = url;
-	}
-
+   function pageMoveDeleteFnc(no) {
+      var url = './deletePost.do?pno=' + no;
+      location.href = url;
+   }
+   
+   function pageMoveCorrectFnc(no) {
+      var url = './correctPost.do?pno=' + no;
+      location.href = url;
+   }
+   
+   
+   <!-- 작성자: 박지영 -->
+   //댓글 삭제창
+   function replyDeleteMsgFnc(pno, rno) {
+      var msg = confirm("댓글을 삭제합니다.");
+      if(msg == true){
+         replyDeleteFnc(pno, rno);
+      }
+      else{
+         return false;
+      }
+   }
+   
+   //댓글 삭제 
+   function replyDeleteFnc(pno, rno){
+      var url = './replyDelete.do?rno=' + rno + '&pno=' + pno;
+      location.href = url;
+   }
+   
+   //댓글 수정
+   function replyUpdateFnc(pno, rno){
+	   let replyContentObj = document.getElementById('replyContent');
+	   let beforeReplyContent = replyContentObj.innerHTML;
+	   replyContentObj.innerHTML = '<textarea rows="5" cols="50" name="content">';
+	   replyContentObj.innerHTML += '</textarea>';
+	   replyContentObj.firstChild.value = beforeReplyContent;
+	   let replyUpdateBtnObj = document.getElementById('replyUpdateBtn');
+	   replyUpdateBtnObj.text = "[저장]";
+	   replyUpdateBtnObj.attributes[2].value = 'replySaveFnc(' + pno+',' + rno +')';
+   }
+   
+   //댓글 수정 저장
+   function replySaveFnc(pno, rno){
+	   let replyContentObj = document.getElementById('replyContent');
+	   let beforeReplyContent = replyContentObj.firstChild.value;
+	   let url = './replyUpdate.do?pno=' + pno + '&rno=' + rno + '&content=' + beforeReplyContent;
+	   location.href = url;
+   }
+   
+   
 </script>
+
 </head>
 
 <body>
@@ -59,49 +84,69 @@
 			<td>${boardVo.tag}</td>
 		</tr>
 	</table>
-	
+
+	<!-- 작성자: 박지영 -->
 	<!-- 댓글조회 -->
 	<div id="reply">
-	  <ol class="replyList">
-	    <c:forEach items="${replyList}" var="replyList">
-	      <li>
-	        <p>
-	        작성자 : ${replyList.writer}<br />
-	        작성 날짜 :  <fmt:formatDate value="${replyList.wdate}" pattern="yyyy-MM-dd" />
-	        </p>
-	
-	        <p>${replyList.content}</p>
-	        
-	        <div>
-	        	<a href="#" onclick="replyDeleteMsgFnc(${boardVo.pno}, ${replyList.rno})">[수정]</a>
-	        	<a href="#" onclick="replyDeleteMsgFnc(${boardVo.pno}, ${replyList.rno})">[삭제]</a>
-	        </div>
-	      </li>
-	    </c:forEach>   
-	  </ol>
+		<form method="get" name="replyUpdateForm" action="./replyUpdate.do">
+			<ol class="replyList">
+				<c:forEach items="${replyList}" var="replyList">
+					<li>
+						<p>
+							<%--                		<input type="hidden" name="pno" value="${replyList.pno}"> --%>
+							<%--         			<input type="hidden" name="rno" value="${replyList.rno}"> --%>
+							작성자 : ${replyList.writer}<br /> 작성 날짜 :
+							<fmt:formatDate value="${replyList.wdate}" pattern="yyyy-MM-dd" />
+						</p>
+
+						<p id="replyContent">${replyList.content}</p>
+
+						<div style="width: 700px; text-align: right;">
+<%-- 							<c:if test="${sessionScope.id == replyList.writer}"> --%>
+								<tr>
+									<td>
+										<div class="btn-group btn-group-sm" role="group" aria-label="...">
+											<div style="text-align: center;">
+												<a href="#" id="replyUpdateBtn"
+													onclick="replyUpdateFnc(${replyList.pno}, ${replyList.rno})">[수정]</a>
+												<a href="#" id="replyDeleteBtn"
+													onclick="replyDeleteMsgFnc(${boardVo.pno}, ${replyList.rno})">[삭제]</a>
+											</div>
+										</div>
+									</td>
+								</tr>
+<%-- 							</c:if> --%>
+						</div>
+					</li>
+				</c:forEach>
+			</ol>
+		</form>
 	</div>
-	
+
 	<!-- 댓글등록 -->
 	<div>
-	<form method="post" name="replyForm" action="./writeReplyCtr.do" >
-	
-		<p>
-			<label>댓글 작성자: </label> ${boardVo.id} <input type="hidden" name="writer" value="${boardVo.id}">
-		</p>
-		<p>
-			<textarea rows="5" cols="50" name="content"></textarea>
-		</p>
-		<p>
-			<input type="hidden" name="pno" value="${boardVo.pno}">
-			<button type="submit">댓글 작성</button>
-		</p>
-	</form>
+		<form method="post" name="replyForm" action="./writeReplyCtr.do">
+
+			<p>
+				<label>댓글 작성자: </label> ${boardVo.id} <input type="hidden"
+					name="writer" value="${boardVo.id}">
+			</p>
+			<p>
+				<textarea rows="5" cols="50" name="content"></textarea>
+			</p>
+			<p>
+				<input type="hidden" name="pno" value="${boardVo.pno}">
+				<button type="submit">댓글 작성</button>
+			</p>
+		</form>
 	</div>
-	
-		
-	<input type="button" value="수정" onclick="pageMoveCorrectFnc(${boardVo.pno});">
+
+
+	<input type="button" value="수정"
+		onclick="pageMoveCorrectFnc(${boardVo.pno});">
 	<input type="button" value="삭제"
 		onclick="pageMoveDeleteFnc(${boardVo.pno})">
+
 	<!-- 글 전체목록으로 되돌아가기 -->
 	<input type="button" value="뒤로가기" onclick="pageMoveListFnc();">
 
