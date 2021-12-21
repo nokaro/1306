@@ -18,8 +18,8 @@ body {
 	background-color: #FFFFFF;
 	width: 700px;
 	height: 500px;
-	margin: 18em;
-	margin-left: 450px;
+	margin: 13em;
+	margin-left: 350px;
 	border-radius: 1.5em;
 	box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
 }

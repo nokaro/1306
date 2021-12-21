@@ -13,8 +13,15 @@
 
 <title>메인화면</title>
 
+<script type="text/javascript" > 
+	//삭제
+	function pageMoveDeleteFnc(id){ 
+		location.href = './deleteCtr.do?id='+ id;
+	}
+</script>
+
 <link rel="icon" type="image/x-icon"
-	href="resources/assets/img/favicon.ico" />
+	href="${pageContext.request.contextPath}/resources/assets/img/favicon.ico" />
 <!-- Font Awesome icons (free version)-->
 <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"
 	crossorigin="anonymous"></script>
@@ -24,40 +31,122 @@
 <link rel="stylesheet" type="text/css"
 	href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" />
 <!-- Core theme CSS (includes Bootstrap)-->
-<link rel="stylesheet" href="resources/css/styles.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/styles.css" />
 
+<style type="text/css">
+.submit {
+	cursor: pointer;
+	border-radius: 5em;
+	color: #fff;
+	background: linear-gradient(to right, #cd5ce0, #e385f2);
+	border: 0;
+	padding-left: 40px;
+	padding-right: 40px;
+	padding-bottom: 10px;
+	padding-top: 10px;
+	font-family: 'Ubuntu', sans-serif;
+	margin: 20px;
+	margin-left: 200px;
+	font-size: 13px;
+	box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
+}
 
+.un {
+	width: 60%;
+	color: rgb(38, 50, 56);
+	font-weight: 700;
+	font-size: 14px;
+	letter-spacing: 1px;
+	background: rgba(136, 126, 126, 0.04);
+	padding: 10px 20px;
+	border: none;
+	border-radius: 20px;
+	outline: none;
+	box-sizing: border-box;
+	border: 2px solid rgba(0, 0, 0, 0.02);
+	margin-left: 85px;
+	text-align: center;
+	margin-bottom: 27px;
+	font-family: 'Ubuntu', sans-serif;
+}
+
+.un2 {
+	width: 60%;
+	color: rgb(38, 50, 56);
+	font-weight: 700;
+	font-size: 14px;
+	letter-spacing: 1px;
+	background: rgba(136, 126, 126, 0.04);
+	padding: 10px 20px;
+	border: none;
+	border-radius: 20px;
+	outline: none;
+	box-sizing: border-box;
+	border: 2px solid rgba(0, 0, 0, 0.02);
+	margin-left: 65px;
+	text-align: center;
+	margin-bottom: 27px;
+	font-family: 'Ubuntu', sans-serif;
+}
+
+.un3 {
+	width: 60%;
+	color: rgb(38, 50, 56);
+	font-weight: 700;
+	font-size: 14px;
+	letter-spacing: 1px;
+	background: rgba(136, 126, 126, 0.04);
+	padding: 10px 20px;
+	border: none;
+	border-radius: 20px;
+	outline: none;
+	box-sizing: border-box;
+	border: 2px solid rgba(0, 0, 0, 0.02);
+	margin-left: 75px;
+	text-align: center;
+	margin-bottom: 27px;
+	font-family: 'Ubuntu', sans-serif;
+}
+ 
+h2{
+	margin-left: 50%;
+	font-family: 'Ubuntu', sans-serif; 
+}
+
+.mb-0{
+	margin-left: 40%;
+	font-family: 'Ubuntu', sans-serif; 
+}
+
+p{
+	margin-left: 32%;
+	font-family: 'Ubuntu', sans-serif;
+	font-size: 20px;
+	font-weight: bold;
+}
+</style>
 </head>
 
 <body id="page-top">
+
 	<!-- Navigation-->
-	<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top"
-		id="sideNav">
-		
-		<a class="navbar-brand js-scroll-trigger">   
-			<p style="color: purple;">${member.id} 님</p>
-		</a>
-		<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-			data-bs-target="#navbarResponsive" aria-controls="navbarResponsive"
-			aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse" id="navbarResponsive">
-			<ul class="navbar-nav">
-				<li class="nav-item"><a class="nav-link js-scroll-trigger"
-					href="#write">게시물 작성</a></li>
-				<!-- 				<li class="nav-item"><a class="nav-link js-scroll-trigger" href="./board/AllPost.do">모든 게시물</a></li> -->
-				<li class="nav-item"><a class="nav-link js-scroll-trigger"
-					href="#all">모든 게시물</a></li>
-				<li class="nav-item"><a class="nav-link js-scroll-trigger"
-					href="#me">나의 게시물</a></li>
-				<li class="nav-item"><a class="nav-link js-scroll-trigger"
-					href="#like">좋아요 랭킹</a></li>
-				<li class="nav-item"><a class="nav-link js-scroll-trigger"
-					href="./member/update.do?id=${member.id}">회원 수정</a></li>
-			</ul>
-		</div>
-	</nav>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
+            <a class="navbar-brand js-scroll-trigger" href="#page-top">
+                
+            <p style="color: purple;">${member.id} 님</p>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#write">게시물 작성</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#all">모든 게시물</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#me">나의 게시물</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#memberupdate">회원 수정</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#interests">로그아웃</a></li> 
+                </ul>
+            </div>
+        </nav>
+ 
 	<!-- Page Content-->
 	<div class="container-fluid p-0">
 
@@ -136,32 +225,21 @@
 		<hr class="m-0" />
 
 
-		<!-- 좋아요 랭킹 -->
-		<section class="resume-section" id="like">
+		<!-- 회원 수정 -->
+		<section class="resume-section" id="memberupdate">
 			<div class="resume-section-content">
-				<h2 class="mb-5">like</h2>
-				<div
-					class="d-flex flex-column flex-md-row justify-content-between mb-5">
-					<div class="flex-grow-1">
-						<h3 class="mb-0">University of Colorado Boulder</h3>
-						<div class="subheading mb-3">Bachelor of Science</div>
-						<div>Computer Science - Web Development Track</div>
-						<p>GPA: 3.23</p>
-					</div>
-					<div class="flex-shrink-0">
-						<span class="text-primary">August 2006 - May 2010</span>
-					</div>
-				</div>
-				<div class="d-flex flex-column flex-md-row justify-content-between">
-					<div class="flex-grow-1">
-						<h3 class="mb-0">James Buchanan High School</h3>
-						<div class="subheading mb-3">Technology Magnet Program</div>
-						<p>GPA: 3.56</p>
-					</div>
-					<div class="flex-shrink-0">
-						<span class="text-primary">August 2002 - May 2006</span>
-					</div>
-				</div>
+				<h2 class="mb-5">회원 수정</h2>
+				<form action="./updateCtr.do" method="post">
+					<p>아이디:<input class="un" type="text" name="id" value="${member.id}" readonly="readonly"></p> 
+					<p>비밀번호:<input class="un2" type="password" name="password"></p>  
+					<p>이름:<input class="un3" type="text" name="name" value="${member.name}" readonly="readonly"></p> 
+					<p>이메일:<input class="un2" type="text" name="email"> 
+					<p>휴대전화:<input class="un" type="text" name="phonenum" > 
+										                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+					<input class="submit" type="submit" value="수정">
+			 		<input class="submit" type="button" value="삭제" onclick="pageMoveDeleteFnc(${member.id});"> 
+			 		<input class="submit" type="button" value="뒤로가기" onclick="pageMoveListFnc();">    
+				</form>	
 			</div>
 		</section>
 		<hr class="m-0" />

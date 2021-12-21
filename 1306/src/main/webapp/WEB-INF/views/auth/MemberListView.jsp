@@ -23,9 +23,7 @@ table {
 </head>
 
 <body>
-
-	<jsp:include page="/WEB-INF/views/Header.jsp"/>
-
+ 
 	<h1>회원목록</h1>
 	  
 	<form id='pagingForm' action="./list.do" method="post">
@@ -101,7 +99,5 @@ table {
 		<jsp:param value="${pagingMap}" name="pagingMap"/>
 	</jsp:include>
 	  
-	<jsp:include page="/WEB-INF/views/Tail.jsp"/>
-	
 </body>
 </html>

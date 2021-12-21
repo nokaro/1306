@@ -9,9 +9,7 @@
 </head>
 
 <body>
-
-	<jsp:include page="/WEB-INF/views/Header.jsp"/>
-
+ 
 	<h1>회원등록</h1>
 		
 	<form action="./addCtr.do" method="post">
@@ -23,8 +21,6 @@
 				<input type="submit" value="회원추가">
 				<input type="reset" value="취소">
 	</form>
-
-	<jsp:include page="/WEB-INF/views/Tail.jsp"/>
-	
+ 
 </body>
 </html>

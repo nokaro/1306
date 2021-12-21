@@ -8,11 +8,7 @@
 <title>회원정보 수정</title>
 	
 <script type="text/javascript" >
-	//뒤로가기
-	function pageMoveListFnc(){
-		location.href = '../loginCtr2.do';
-	}
-	
+	 
 	//삭제
 	function pageMoveDeleteFnc(id){ 
 		location.href = './deleteCtr.do?id='+ id;
@@ -21,10 +17,7 @@
 	
 </head>
 
-<body>
-
-	<jsp:include page="/WEB-INF/views/Header.jsp"/>
-
+<body> 
 	<h1>회원정보 수정</h1>
 		
 	<form action="./updateCtr.do" method="post">
@@ -35,11 +28,8 @@
 		휴대전화: <input type="text" name="phonenum" ><br/>
 							                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
 		<input type="submit" value="수정">
- 		<input type="button" value="삭제" onclick="pageMoveDeleteFnc(${member.id});"> 
- 		<input type="button" value="뒤로가기" onclick="pageMoveListFnc();">    
+ 		<input type="button" value="탈퇴" onclick="pageMoveDeleteFnc(${member.id});">  
 	</form>	
-
-	<jsp:include page="/WEB-INF/views/Tail.jsp"/>
-	
+ 
 </body>
 </html>
