@@ -32,7 +32,7 @@
 
 		var msg = confirm("회원정보를 삭제합니다.");
 		if (msg == true) {
-			var url = '/1306/member/deleteCtr2.do?id=' + id;
+			var url = '/1306/auth/deleteCtr.do?id=' + id;
 			location.href = url;
 		} else {
 			return false;
@@ -75,11 +75,12 @@ form.form1 {
 	padding-top: 10px;
 	font-family: 'Ubuntu', sans-serif;
 	margin: 10px;
+	margin-top: 10px;
 	margin-left: 690px;
 	font-size: 13px;
 	box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
 }
-
+ 
 .un {
 	width: 60%;
 	color: rgb(38, 50, 56);
@@ -126,8 +127,8 @@ table {
 
 <body>
  	<div class="main">
- 	<input class="submit" type="button" value="로그인 화면으로" onclick="loginMoveFnc();">
- 	<input class="submit" type="button" value="뒤로가기" onclick="location.href='./list.do';">
+ 	<br/>
+ 	<input class="submit" type="button" value="로그인 화면으로" onclick="loginMoveFnc();"> 
 	<h3>회원목록</h3>
 	  
 	<form class="form1" id='pagingForm' action="./list.do" method="post">

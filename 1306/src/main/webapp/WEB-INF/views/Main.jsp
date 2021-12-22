@@ -78,6 +78,23 @@
 	box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
 }
 
+.submit4 {
+	cursor: pointer;
+	border-radius: 5em;
+	color: #fff;
+	background: linear-gradient(to right, #cd5ce0, #e385f2);
+	border: 0;
+	padding-left: 40px;
+	padding-right: 40px;
+	padding-bottom: 10px;
+	padding-top: 10px;
+	font-family: 'Ubuntu', sans-serif;
+	margin: 20px;
+	margin-left: 140px;
+	font-size: 13px;
+	box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
+}
+
 .un {
 	width: 60%;
 	color: rgb(38, 50, 56);
@@ -174,6 +191,7 @@
 }
 
 h2 {
+	margin-left: 46%;
 	font-family: 'Ubuntu', sans-serif;
 }
 
@@ -188,6 +206,11 @@ p {
 	font-size: 20px;
 	font-weight: bold;
 }
+
+p.pl{
+	margin-left: 0px;
+}
+ 
 </style>
 </head>
 
@@ -198,7 +221,7 @@ p {
 		id="sideNav">
 		<a class="navbar-brand js-scroll-trigger" href="#page-top">
 
-			<p style="color: purple;">${member.id}님</p>
+			<p class="pl" style="color: purple;">${member.id}님</p>
 		</a>
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
 			data-bs-target="#navbarResponsive" aria-controls="navbarResponsive"
@@ -292,8 +315,8 @@ p {
 						이메일:<input class="un4" type="text" name="email">
 					<p>
 						휴대전화:<input class="un5" type="text" name="phonenum"> <input
-							class="submit" type="submit" value="수정" onclick="updateMsgFnc();">
-						<input class="submit" type="button" value="탈퇴"
+							class="submit4" type="submit" value="수정" onclick="updateMsgFnc();">
+						<input class="submit4" type="button" value="탈퇴"
 							onclick="deleteMsgFnc('${member.id}');">
 				</form>
 			</div>
