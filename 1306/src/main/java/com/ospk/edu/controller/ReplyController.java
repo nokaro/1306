@@ -69,7 +69,7 @@ public class ReplyController {
 	@RequestMapping(value = "/board/replyDelete.do", method = RequestMethod.GET)
     public String deleteReply(int pno, int rno, ReplyVo replyVo, HttpSession session) throws Exception{
 		logger.info("Welcome ReplyController! deleteReply rno: " + rno);		
-		//replyService.deleteReply(replyVo);
+		replyService.deleteReply(replyVo);
 		String viewUrlStr = "redirect:/board/readPost.do?pno=" + pno;
 		
 		return viewUrlStr;
