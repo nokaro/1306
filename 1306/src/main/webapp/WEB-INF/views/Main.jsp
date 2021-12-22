@@ -178,7 +178,12 @@ h2 {
 }
 
 .mb-0 {
-	font-family: 'Ubuntu', sans-serif; 
+	font-family: 'Ubuntu', sans-serif;
+	margin-bottom: 20px;
+}
+
+.mb-5 {
+	font-family: 'Ubuntu', sans-serif;
 	margin-bottom: 20px;
 }
 
@@ -188,6 +193,18 @@ p {
 	font-size: 20px;
 	font-weight: bold;
 }
+
+.user {
+	font-family: 'Ubuntu', sans-serif;
+	text-color: purple;
+	text-align: center;
+	padding-left: -50px;
+}
+
+.center {
+	font-family: 'Ubuntu', sans-serif;
+	text-align: center;
+}
 </style>
 </head>
 
@@ -196,10 +213,9 @@ p {
 	<!-- Navigation-->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top"
 		id="sideNav">
-		<a class="navbar-brand js-scroll-trigger" href="#page-top">
-
-			<p style="color: purple;">${member.id}님</p>
-		</a>
+		<div class="navbar-brand">
+			<p class="user">${member.id}님</p>
+		</div>
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
 			data-bs-target="#navbarResponsive" aria-controls="navbarResponsive"
 			aria-expanded="false" aria-label="Toggle navigation">
@@ -272,7 +288,6 @@ p {
 		</section>
 		<hr class="m-0" />
 
-
 		<!-- 회원 수정 -->
 		<section class="resume-section" id="memberupdate">
 			<div class="resume-section-content">
@@ -291,16 +306,16 @@ p {
 					<p>
 						이메일:<input class="un4" type="text" name="email">
 					<p>
-						휴대전화:<input class="un5" type="text" name="phonenum"> <input
-							class="submit" type="submit" value="수정" onclick="updateMsgFnc();">
-						<input class="submit" type="button" value="탈퇴"
-							onclick="deleteMsgFnc('${member.id}');">
+						휴대전화:<input class="un5" type="text" name="phonenum">
+					<div class="center">
+						<input class="submit" type="submit" value="수정"
+							onclick="updateMsgFnc();"> <input class="submit"
+							type="button" value="탈퇴" onclick="deleteMsgFnc('${member.id}');">
+					</div>
 				</form>
 			</div>
+			<hr class="m-0" />
 		</section>
-		<hr class="m-0" />
-
-
 	</div>
 	<!-- Bootstrap core JS-->
 	<script

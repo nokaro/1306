@@ -23,16 +23,16 @@
 	font-weight: bolder;
 	box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
 }
-#input_content{
+.input_content{
 	width:600px;
 	height:200px;
-	border-color:purple;
+	border:purple 3px solid;
 }
 
-#input_tag{
+.input_tag{
 	width:600px;
 	height:100px;
-	border-color:purple;
+	border:purple 3px solid;
 }
 
 .tmpt{
@@ -44,8 +44,8 @@
 	<div id="content">
 		<form action=./board/writeCtr.do method="post">
 			<input type="hidden" name="id" value="${member.id}" />
-			<input id="input_content" type="text" name="content" placeholder="무슨 일이 일어나고 있나요?"
-				required> <br><br> <input id="input_tag" type="text" name="tag"
+			<input class="input_content" type="text" name="content" placeholder="무슨 일이 일어나고 있나요?"
+				required> <br><br> <input class="input_tag" type="text" name="tag"
 				placeholder="태그">
 			<div class="tmpt">
 				<button type="submit" class="submit_c">등록</button>
