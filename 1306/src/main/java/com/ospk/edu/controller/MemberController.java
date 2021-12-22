@@ -226,6 +226,8 @@ public class MemberController {
 	public String memberDeleteCtr(String id, Model model) {
 		logger.info("Welcome MemberController! " + "memberDeleteCtr(관리자) id: " + id);
 		
+		int pno = memberService.boardPnoSearch(id);
+		memberService.memberDeleteReply(pno);
 		memberService.memeberDeleteBoard(id);
 		memberService.memberDeleteOne2(id);
 

@@ -205,6 +205,14 @@ p {
 	font-family: 'Ubuntu', sans-serif;
 	text-align: center;
 }
+.center{
+margin-left: 45%;
+}
+
+table{
+	width:700px;
+	height:300px;
+}
 </style>
 </head>
 
@@ -251,13 +259,42 @@ p {
 		</section>
 		<hr class="m-0" />
 
-		<!-- 모든게시물-->
-		<section class="resume-section" id="all">
-			<div class="resume-section-content">
-				<jsp:include page="/WEB-INF/views/board/AllPost.jsp" />
-			</div>
-		</section>
-		<hr class="m-0" />
+	 <!-- 모든게시물-->
+  <section class="resume-section" id="all">
+        <div class="center">
+         
+           <h2 class="mb-5">ALL</h2>
+            <form id='pagingForm' action="./loginCtr2.do#all" method="get">
+               <input type="text" name="keyword2" value="${searchMap.keyword2}"
+                  placeholder="태그 검색">
+            </form>
+
+            <table>
+               <tr>
+                  <th>번호</th>
+                  <th>ID</th>
+                  <th>내용</th>
+                  <th>태그</th>
+                  <th>생성날짜</th>
+               </tr>
+               <c:forEach var="boardVo" items="${AllPostList}">
+                  <tr>
+                     <td>${boardVo.pno}</td>
+                     <td>${boardVo.id}</td>
+                     <td><a href='/1306/board/readPost.do?pno=${boardVo.pno}'>${boardVo.content}</a></td>
+                     <td>${boardVo.tag}</td>
+                     <td><fmt:formatDate value="${boardVo.regiDate}"
+                           pattern="YYYY-MM-dd hh:mm" />
+   
+
+                  </tr>
+               </c:forEach>
+
+            </table>
+               <button type="submit" class="submit" onclick="location.href='./loginCtr2.do#all';">뒤로가기</button>
+         </div>
+      </section>
+      <hr class="m-0" />
 
 		<!-- 내 게시물 -->
 		<section class="resume-section" id="me">
