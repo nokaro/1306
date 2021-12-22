@@ -67,6 +67,25 @@ public class MemberDaoImpl implements MemberDao {
 		sqlSession.delete(nameSpace + "memberDeleteOne", id);
 	}
 
+	
+	@Override
+	public int boardPnoSearch(String id) {
+		return sqlSession.delete(nameSpace + "boardPnoSearch", id); 
+	} 
+	@Override
+	public void memeberDeleteBoard(String id) {
+		sqlSession.delete(nameSpace + "memeberDeleteBoard", id); 
+	} 
+	@Override
+	public void memberDeleteReply(int id) {
+		sqlSession.delete(nameSpace + "memberDeleteReply", id); 
+	}
+
+	@Override
+	public void memberDeleteOne2(String id) {
+		sqlSession.delete(nameSpace + "memberDeleteOne2", id); 
+	}
+	
 	@Override
 	public int memberUpdateOne(MemberVo memberVo) {
 		return sqlSession.update(nameSpace + "memberUpdateOne", memberVo);
@@ -105,5 +124,7 @@ public class MemberDaoImpl implements MemberDao {
 	public int memberPWUpdateOne(MemberVo memberVo) {
 		return sqlSession.update(nameSpace + "memberPWUpdateOne", memberVo);
 	}
+
+	
 
 }

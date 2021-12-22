@@ -9,7 +9,7 @@ nav > ul {
 	list-style-type: none;
 	padding: 0px;
 	overflow: hidden;
-	background-color: #333333;
+	background-color: white; 
 	display: table;
 	margin-left: auto;
 	margin-right: auto;
@@ -21,21 +21,19 @@ nav > ul > li {
 
 nav > ul > li > a {
 	display: block;
-	color: white;
+	color: black;
 	text-align: center;
 	padding: 16px;
 	text-decoration: none;
 }
 
 nav > ul > li > a:hover{
-	color: #FFD9EC;
-	background-color: #5D5D5D;
+	color: black;
 	font-weight: bold;
 }
 
 .active{
-	color: #FFD9EC;
-	background-color: #5D5D5D;
+	color: #FFD9EC; 
 	font-weight: bold;
 }
 

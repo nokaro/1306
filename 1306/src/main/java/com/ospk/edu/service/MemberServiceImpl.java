@@ -20,7 +20,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public int memberInsertOne(MemberVo memberVo) { 
+	public int memberInsertOne(MemberVo memberVo) {
 		return memberDao.memberInsertOne(memberVo);
 	}
 
@@ -30,7 +30,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public List<MemberVo> memberSelectList(String searchOption, String keyword, int start, int end) { 
+	public List<MemberVo> memberSelectList(String searchOption, String keyword, int start, int end) {
 		return memberDao.memberSelectList(searchOption, keyword, start, end);
 	}
 
@@ -39,6 +39,25 @@ public class MemberServiceImpl implements MemberService {
 		memberDao.memberDeleteOne(id);
 	}
 
+
+	@Override
+	public int boardPnoSearch(String id) {
+		return memberDao.boardPnoSearch(id);
+	}
+	@Override
+	public void memeberDeleteBoard(String id) {
+		memberDao.memeberDeleteBoard(id); 
+	}
+	@Override
+	public void memberDeleteOne2(String id) {
+		memberDao.memberDeleteOne2(id);
+	}
+	@Override
+	public void memberDeleteReply(int id) {
+		memberDao.memberDeleteReply(id); 
+	}
+	
+	
 	@Override
 	public int memberUpdateOne(MemberVo memberVo) {
 		return memberDao.memberUpdateOne(memberVo);
@@ -62,17 +81,17 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public MemberVo memberFindID(String name, String email) { //아이디 찾기
+	public MemberVo memberFindID(String name, String email) { // 아이디 찾기
 		return memberDao.memberFindID(name, email);
 	}
 
 	@Override
-	public MemberVo memberFindPW(String id, String name) { //비밀번호 찾기
+	public MemberVo memberFindPW(String id, String name) { // 비밀번호 찾기
 		return memberDao.memberFindPW(id, name);
 	}
 
-	@Override 
-	public int memberPWUpdateOne(MemberVo memberVo) { //회원 비밀번호 변경 
+	@Override
+	public int memberPWUpdateOne(MemberVo memberVo) { // 회원 비밀번호 변경
 		return memberDao.memberPWUpdateOne(memberVo);
 	}
 

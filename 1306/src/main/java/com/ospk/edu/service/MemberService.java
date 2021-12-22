@@ -10,6 +10,12 @@ public interface MemberService {
 	public int memberSelectTotalCount(String keyword, String searchOption);
 	public List<MemberVo> memberSelectList(String searchOption, String keyword, int start, int end);
 	public void memberDeleteOne(String id);
+	
+	public int boardPnoSearch(String id); //회원 삭제(관리자)
+	public void memeberDeleteBoard(String id); //회원 삭제(관리자) 
+	public void memberDeleteOne2(String id); //회원 삭제(관리자)
+	public void memberDeleteReply(int pno); //회원 삭제(관리자)
+	
 	public int memberUpdateOne(MemberVo memberVo); //회원 정보 수정
 	public int memberPWUpdateOne(MemberVo memberVo); //회원 비밀번호 변경
 	

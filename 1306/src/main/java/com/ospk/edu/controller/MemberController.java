@@ -42,21 +42,21 @@ public class MemberController {
 		logger.info("Welcome MemberController! loginCtr! " + id + ", " + password);
 
 		String viewUrlStr = "";
-		
+
 		MemberVo memberVo = memberService.memberExist(id, password);
 
-		if (memberVo != null && id.equals("관리자") && password.equals("1234")) {
+		if (memberVo != null && id.equals("admin") && password.equals("1234")) {
 			// 관리자 라면
 			session.setAttribute("member", memberVo);
 
 			viewUrlStr = "redirect:/auth/list.do";
-			
+
 //			return "redirect:/auth/list.do";
 
 		} else if (memberVo != null) { // 관리자가 아니라면
 
 			session.setAttribute("member", memberVo);
-
+			session.setAttribute("memberVo", memberVo);
 			MemberVo memb = ((MemberVo) session.getAttribute("member"));
 			String pid = memb.getId();
 			logger.info("Welcome MemberController2! Mypost: " + pid);
@@ -75,17 +75,17 @@ public class MemberController {
 			model.addAttribute("searchMap", searchMap);
 
 			viewUrlStr = "/Main";
-			
+
 //			return "/Main";
 		} else {
 //			return "redirect:/loginCtr2.do";
 			viewUrlStr = "/auth/LoginFail";
-			
+
 //			return "/auth/LoginFail";
 		}
-		
+
 		return viewUrlStr;
-		
+
 	}
 
 	// 로그인 버튼 클릭시
@@ -98,10 +98,10 @@ public class MemberController {
 	 * @return
 	 */
 	@RequestMapping(value = "/loginCtr2.do", method = RequestMethod.GET)
-	public String loginCtr2(String id, String password, HttpSession session, 
+	public String loginCtr2(String id, String password, HttpSession session,
 			@RequestParam(defaultValue = "") String keyword2, Model model) {
 
-		//나의게시물
+		// 나의게시물
 		MemberVo memb = ((MemberVo) session.getAttribute("member"));
 		String writer = memb.getId();
 		List<BoardVo> MyPostList = boardService.selectMyPost(writer);
@@ -113,17 +113,15 @@ public class MemberController {
 
 		List<BoardVo> AllPostList = boardService.readAllPost(keyword2);
 
-		model.addAttribute("MyPostList", MyPostList); //나의게시물
-		model.addAttribute("AllPostList", AllPostList); //전체게시물
+		model.addAttribute("MyPostList", MyPostList); // 나의게시물
+		model.addAttribute("AllPostList", AllPostList); // 전체게시물
 		model.addAttribute("searchMap", searchMap);
 
 		return "/Main";
 	}
-	
-	
 
 	// 로그아웃
-	@RequestMapping(value = "/logout.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/member/logout.do", method = RequestMethod.GET)
 	public String logout(HttpSession session, Model model) {
 		logger.info("Welcome MemberController! logout");
 
@@ -223,14 +221,30 @@ public class MemberController {
 		return "redirect:/loginCtr2.do";
 	}
 
-	// 회원탈퇴
+	// 회원삭제(관리자)
 	@RequestMapping(value = "/auth/deleteCtr.do", method = RequestMethod.GET)
 	public String memberDeleteCtr(String id, Model model) {
-		logger.info("Welcome MemberController! " + "memberDeleteCtr id: " + id);
-
-		memberService.memberDeleteOne(id);
+		logger.info("Welcome MemberController! " + "memberDeleteCtr(관리자) id: " + id);
+		
+		memberService.memeberDeleteBoard(id);
+		memberService.memberDeleteOne2(id);
 
 		return "redirect:/auth/list.do";
+	}
+
+	// 회원삭제(회원)
+	@RequestMapping(value = "/member/deleteCtr2.do", method = RequestMethod.GET)
+	public String memberDeleteCtr2(String id, String pid, Model model, HttpSession session) {
+		logger.info("Welcome MemberController! " + "memberDeleteCtr(회원) id: " + id);
+		
+		int pno = memberService.boardPnoSearch(id);
+		memberService.memberDeleteReply(pno);
+		memberService.memeberDeleteBoard(id);
+		memberService.memberDeleteOne2(id);
+		
+		session.invalidate(); // 세션 삭제
+		 
+		return "../../Login";
 	}
 
 	// 아이디/비밀번호 찾기 화면으로

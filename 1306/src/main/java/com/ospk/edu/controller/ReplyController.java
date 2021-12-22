@@ -74,8 +74,5 @@ public class ReplyController {
 		
 		return viewUrlStr;
     }
-	
-
-
-
+	 
 }

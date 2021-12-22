@@ -14,25 +14,24 @@ import com.ospk.edu.model.ReplyVo;
  *
  */
 @Service
-public class ReplyServiceImpl implements ReplyService{
-	
+public class ReplyServiceImpl implements ReplyService {
+
 	@Autowired
 	public ReplyDao replyDao;
-	
-	public List<ReplyVo> selectReply(int pno) throws Exception{
+
+	public List<ReplyVo> selectReply(int pno) throws Exception {
 		return replyDao.selectReply(pno);
 	}
-	
-	public void insertReply(ReplyVo replyVo) throws Exception{
+
+	public void insertReply(ReplyVo replyVo) throws Exception {
 		replyDao.insertReply(replyVo);
 	}
-	
-	public void updateReply(ReplyVo replyVo) throws Exception{
+
+	public void updateReply(ReplyVo replyVo) throws Exception {
 		replyDao.updateReply(replyVo);
 	}
-	
-	public void deleteReply(ReplyVo replyVo) throws Exception{
+
+	public void deleteReply(ReplyVo replyVo) throws Exception {
 		replyDao.deleteReply(replyVo);
-	}
-	
+	} 
 }

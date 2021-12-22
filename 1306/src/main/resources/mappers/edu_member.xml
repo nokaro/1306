@@ -88,12 +88,33 @@
 	</select>
 	
 	
-	<!-- 회원삭제 -->
+	<!-- 회원삭제(회원) -->
 	<delete id="memberDeleteOne" parameterType="String"> 
 		DELETE FROM MEMBER 
 		WHERE MID = #{value} 
 	</delete>
 	
+	
+	<!-- 회원삭제(관리자)+게시물 삭제+댓글삭제 --> 
+	<select id="boardPnoSearch" parameterType="String">
+		SELECT PNO 
+		FROM BOARD 
+		WHERE MID = #{value}
+	</select>
+	<delete id="memberDeleteReply" parameterType="int">
+		DELETE FROM BOARD_REPLY 
+		WHERE PNO = #{value} 
+	</delete>
+	<delete id="memeberDeleteBoard" parameterType="String">
+		DELETE FROM BOARD 
+		WHERE MID = #{value} 
+	</delete>
+	
+	
+	<delete id="memberDeleteOne2" parameterType="String"> 
+		DELETE FROM MEMBER 
+		WHERE MID = #{value} 
+	</delete>
    
 	<update id="memberUpdateOne" parameterType="memberVo"> 
 		UPDATE MEMBER 
