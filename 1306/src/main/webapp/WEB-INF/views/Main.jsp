@@ -78,23 +78,6 @@
 	box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
 }
 
-.submit4 {
-	cursor: pointer;
-	border-radius: 5em;
-	color: #fff;
-	background: linear-gradient(to right, #cd5ce0, #e385f2);
-	border: 0;
-	padding-left: 40px;
-	padding-right: 40px;
-	padding-bottom: 10px;
-	padding-top: 10px;
-	font-family: 'Ubuntu', sans-serif;
-	margin: 20px;
-	margin-left: 140px;
-	font-size: 13px;
-	box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
-}
-
 .un {
 	width: 60%;
 	color: rgb(38, 50, 56);
@@ -191,7 +174,6 @@
 }
 
 h2 {
-	margin-left: 46%;
 	font-family: 'Ubuntu', sans-serif;
 }
 
@@ -206,11 +188,14 @@ p {
 	font-size: 20px;
 	font-weight: bold;
 }
-
-p.pl{
-	margin-left: 0px;
+.center{
+margin-left: 45%;
 }
- 
+
+table{
+	width:700px;
+	height:300px;
+}
 </style>
 </head>
 
@@ -221,7 +206,7 @@ p.pl{
 		id="sideNav">
 		<a class="navbar-brand js-scroll-trigger" href="#page-top">
 
-			<p class="pl" style="color: purple;">${member.id}님</p>
+			<p style="color: purple;">${member.id}님</p>
 		</a>
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
 			data-bs-target="#navbarResponsive" aria-controls="navbarResponsive"
@@ -258,13 +243,42 @@ p.pl{
 		</section>
 		<hr class="m-0" />
 
-		<!-- 모든게시물-->
-		<section class="resume-section" id="all">
-			<div class="resume-section-content">
-				<jsp:include page="/WEB-INF/views/board/AllPost.jsp" />
-			</div>
-		</section>
-		<hr class="m-0" />
+	 <!-- 모든게시물-->
+  <section class="resume-section" id="all">
+        <div class="center">
+         
+           <h2 class="mb-5">ALL</h2>
+            <form id='pagingForm' action="./loginCtr2.do#all" method="get">
+               <input type="text" name="keyword2" value="${searchMap.keyword2}"
+                  placeholder="태그 검색">
+            </form>
+
+            <table>
+               <tr>
+                  <th>번호</th>
+                  <th>ID</th>
+                  <th>내용</th>
+                  <th>태그</th>
+                  <th>생성날짜</th>
+               </tr>
+               <c:forEach var="boardVo" items="${AllPostList}">
+                  <tr>
+                     <td>${boardVo.pno}</td>
+                     <td>${boardVo.id}</td>
+                     <td><a href='/1306/board/readPost.do?pno=${boardVo.pno}'>${boardVo.content}</a></td>
+                     <td>${boardVo.tag}</td>
+                     <td><fmt:formatDate value="${boardVo.regiDate}"
+                           pattern="YYYY-MM-dd hh:mm" />
+   
+
+                  </tr>
+               </c:forEach>
+
+            </table>
+               <button type="submit" class="submit" onclick="location.href='./loginCtr2.do#all';">뒤로가기</button>
+         </div>
+      </section>
+      <hr class="m-0" />
 
 		<!-- 내 게시물 -->
 		<section class="resume-section" id="me">
@@ -315,8 +329,8 @@ p.pl{
 						이메일:<input class="un4" type="text" name="email">
 					<p>
 						휴대전화:<input class="un5" type="text" name="phonenum"> <input
-							class="submit4" type="submit" value="수정" onclick="updateMsgFnc();">
-						<input class="submit4" type="button" value="탈퇴"
+							class="submit" type="submit" value="수정" onclick="updateMsgFnc();">
+						<input class="submit" type="button" value="탈퇴"
 							onclick="deleteMsgFnc('${member.id}');">
 				</form>
 			</div>

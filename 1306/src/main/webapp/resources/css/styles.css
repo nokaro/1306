@@ -11435,6 +11435,10 @@ section.resume-section .resume-section-content {
   width: 100%;
 }
 
+section.resume-section .resume-section-content2 {
+ align-items: center;
+}
+
 @media (min-width: 768px) {
   section.resume-section {
     min-height: 200px;
