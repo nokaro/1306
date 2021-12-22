@@ -205,9 +205,6 @@ p {
 	font-family: 'Ubuntu', sans-serif;
 	text-align: center;
 }
-.center{
-margin-left: 45%;
-}
 
 table{
 	width:700px;
