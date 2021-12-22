@@ -8,6 +8,29 @@
 <head>
 <meta charset="UTF-8">
 <title>모든 게시글 목록</title>
+<style type="text/css">
+.submit {
+	cursor: pointer;
+	border-radius: 5em;
+	color: #fff;
+	background: linear-gradient(to right, #cd5ce0, #e385f2);
+	border: 0;
+	padding-left: 40px;
+	padding-right: 40px;
+	padding-top: 10px;
+	font-family: 'Ubuntu', sans-serif;
+	margin: 20px;
+	margin-left: 200px;
+	font-size: 15px;
+	font-weight: bolder;
+	box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
+}
+#input_content{
+	width:600px;
+	height:200px;
+	border-color:purple;
+}
+</style>
 </head>
 
 <body>
@@ -37,5 +60,6 @@
 		</c:forEach>
 
 	</table>
+	<button type="submit" class="submit" onclick="location.href='./loginCtr2.do#all';">뒤로가기</button>
 </body>
 </html>

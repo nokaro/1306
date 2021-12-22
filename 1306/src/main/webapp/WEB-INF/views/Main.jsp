@@ -174,13 +174,12 @@
 }
 
 h2 {
-	margin-left: 50%;
 	font-family: 'Ubuntu', sans-serif;
 }
 
 .mb-0 {
-	margin-left: 40%;
-	font-family: 'Ubuntu', sans-serif;
+	font-family: 'Ubuntu', sans-serif; 
+	margin-bottom: 20px;
 }
 
 p {
@@ -239,39 +238,7 @@ p {
 		<!-- 모든게시물-->
 		<section class="resume-section" id="all">
 			<div class="resume-section-content">
-
-				<form id='pagingForm' action="./loginCtr2.do#all" method="post">
-					<input type="text" name="keyword2" value="${searchMap.keyword2}"
-						placeholder="태그 검색">
-
-				</form>
-
-
-				<table>
-					<tr>
-						<th>번호</th>
-						<th>ID</th>
-						<th>내용</th>
-						<th>생성날짜</th>
-						<th>태그</th>
-					</tr>
-					<c:forEach var="boardVo" items="${AllPostList}">
-						<tr>
-							<td>${boardVo.pno}</td>
-							<td>${boardVo.id}</td>
-							<td>${boardVo.content}</td>
-							<td><fmt:formatDate value="${boardVo.regiDate}"
-									pattern="YYYY-MM-dd hh:mm" />
-							<td>${boardVo.tag}</td>
-
-
-						</tr>
-					</c:forEach>
-
-				</table>
-				<button type="submit" class="submit"
-					onclick="location.href='./loginCtr2.do#all';">뒤로가기</button>
-
+				<jsp:include page="/WEB-INF/views/board/AllPost.jsp" />
 			</div>
 		</section>
 		<hr class="m-0" />
